@@ -34,12 +34,18 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Dog> dog= new ArrayList<>();
 
          Dog d1 = new Dog("Rex","kanis");
-         Dog d2= new Dog("Jack","Lambrador");
-        Dog d3 = new Dog("Nick","kolley");
+         Dog d2= new Dog("Jack","Labrador");
+        Dog d3 = new Dog("Nick","colley");
 
         dog.add(d1);
         dog.add(d2);
         dog.add(d3);
+
+
+        TextView t1 = (TextView) findViewById(R.id.Name);
+        t1.setText(dog.get(count).name);
+        TextView t2 = (TextView) findViewById(R.id.Race);
+        t2.setText(dog.get(count).race);
 
 
         Button button=(Button) findViewById(R.id.button);
