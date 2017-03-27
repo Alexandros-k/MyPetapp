@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
                                        @Override
                                        public void onClick(View v) {
 
-                                           //Intent i1= new Intent(MainActivity.this,BrowseActivity.class);
-
-                                              // Intent intent = new Intent("com.example.alex.myapplication.BrowseActivity");
+                                          
                                            Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
                                                 intent.putExtra("Species","dog");
 
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                                           Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
                                           intent.putExtra("Species","cat");
 
-                                              //ntent intent = new Intent("com.example.alex.myapplication.BrowseActivity");
+
                                               startActivity(intent);
 
                                       }
@@ -51,11 +49,7 @@ public class MainActivity extends AppCompatActivity {
                                           Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
                                           intent.putExtra("Species","others");
                                           startActivity(intent);
-                                             // TextView t1 = (TextView) findViewById(R.id.textView1);
-                                             // t1.setVisibility(View.VISIBLE);
-                                             // button1.setVisibility(View.INVISIBLE);
-                                             // button2.setVisibility(View.INVISIBLE);
-                                             // button3.setVisibility(View.INVISIBLE);
+
                                           }
                                       }
 
