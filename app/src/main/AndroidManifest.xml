@@ -11,10 +11,20 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <action android:name="com.example.alex.myapplication.MainActivity" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".BrowseActivity">
+            <intent-filter>
+                <action android:name="com.example.alex.myapplication.BrowseActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
         </activity>
     </application>
 
