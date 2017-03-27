@@ -18,4 +18,12 @@ class Dog {
 
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRace() {
+        return race;
+    }
 }
