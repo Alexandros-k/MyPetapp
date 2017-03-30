@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
                                        @Override
                                        public void onClick(View v) {
 
-                                          
+
                                            Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
-                                                intent.putExtra("Species","dog");
+                                                intent.putExtra("Species","Dog");
 
                                                startActivity(intent);
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                                       @Override
                                       public void onClick(View v) {
                                           Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
-                                          intent.putExtra("Species","cat");
+                                          intent.putExtra("Species","Cat");
 
 
                                               startActivity(intent);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                                       @Override
                                           public void onClick(View v) {
                                           Intent intent = new Intent(MainActivity.this,BrowseActivity.class);
-                                          intent.putExtra("Species","others");
+                                          intent.putExtra("Species","Other");
                                           startActivity(intent);
 
                                           }

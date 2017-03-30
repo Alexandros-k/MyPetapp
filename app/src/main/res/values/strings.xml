@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="Name">_______</string>
     <string name="Race">_______</string>
+    <string name="Specie">specie :</string>
     <string name="next">next</string>
     <string name="previous">previous</string>
 </resources>

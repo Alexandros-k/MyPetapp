@@ -1,8 +1,6 @@
 package com.example.alex.myapplication;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 
 public class BrowseActivity extends AppCompatActivity {
 
-    int count = 0;
+    int count ;
     Button button;
     Button button2;
     TextView h1;
@@ -22,7 +20,22 @@ public class BrowseActivity extends AppCompatActivity {
     TextView t2;
     TextView t3;
     TextView t4;
+    TextView t5;
     ImageView i1;
+
+    ArrayList<Pet> pet = new ArrayList<>();
+    Pet p1 =new Pet("Dog","Jack", "canis", R.drawable.canis, "dasd");
+    Pet p2 =new Pet("Cat","liono", "British_short_hair", R.drawable.british_short_hair, "dasd");
+    Pet p3 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd");
+    Pet p4 =new Pet("Dog","Nick", "colley", R.drawable.colley, "dasd");
+    Pet p5 =new Pet("Cat","chitara", "Maine_coon", R.drawable.maine_coon, "dasd");
+    Pet p6 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd");
+    Pet p7 =new Pet("Dog","Rex", "labrador", R.drawable.lab, "dasd");
+    Pet p8 =new Pet("Cat","tigra", "Ragdoll", R.drawable.ragdoll, "dasd");
+    Pet p9 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd");
+    Pet p10 =new Pet("Dog","Azor", "husky", R.drawable.husky, "dasd");
+
+
 
 
 
@@ -34,98 +47,93 @@ public class BrowseActivity extends AppCompatActivity {
             count = savedInstanceState.getInt("bla", count);
         }
 
-        final ArrayList<Other> other = new ArrayList<>();
+        pet.add(p1);
+        pet.add(p2);
+        pet.add(p3);
+        pet.add(p4);
+        pet.add(p5);
+        pet.add(p6);
+        pet.add(p7);
+        pet.add(p8);
+        pet.add(p9);
+        pet.add(p10);
 
-        final ArrayList<Cat> cat = new ArrayList<>();
-        Cat c1 = new Cat("liono", "Lion");
-        Cat c2 = new Cat("chitara", "Chitah");
-        Cat c3 = new Cat("tigra", "tiger");
-        cat.add(c1);
-        cat.add(c2);
-        cat.add(c3);
 
+        final String petIntent= getIntent().getExtras().getString("Species");
+           //final String petSpecies= pet.get(count).getSpecies();
+        if (petIntent.equals("Other")) {
 
-
-        final ArrayList<Dog> dog = new ArrayList<>();
-        Dog d1 = new Dog("Jack", "canis", R.drawable.canis, "dasd");
-        Dog d2 = new Dog("Nick", "colley", R.drawable.colley, "dasd");
-        Dog d3 = new Dog("Rex", "labrador", R.drawable.lab, "dasd");
-
-        dog.add(d1);
-        dog.add(d2);
-        dog.add(d3);
-        if(getIntent().getExtras().getString("Species").equals("dog")) {
-            final TextView t1 = (TextView) findViewById(R.id.Name);
-            t1.setText(dog.get(count).name);
-            final TextView t2 = (TextView) findViewById(R.id.Race);
-            t2.setText(dog.get(count).race);
-            final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-            i1.setImageResource(dog.get(count).image);
-            final TextView t3 = (TextView) findViewById(R.id.Info);
-            t3.setText(dog.get(count).text);
-        }else if(getIntent().getExtras().getString("Species").equals("cat")){
-            final TextView t1 = (TextView) findViewById(R.id.Name);
-            t1.setText(cat.get(count).name);
-            final TextView t2 = (TextView) findViewById(R.id.Race);
-            t2.setText(cat.get(count).race);
-             i1 = (ImageView) findViewById(R.id.Pic);
-            i1.setVisibility(View.INVISIBLE);
-            final TextView t3 = (TextView) findViewById(R.id.Info);
-            t3.setVisibility(View.INVISIBLE);
-
-        }else if(getIntent().getExtras().getString("Species").equals("others")){
-             h1 = (TextView) findViewById(R.id.hidden);
+            h1 = (TextView) findViewById(R.id.hidden);
             h1.setVisibility(View.VISIBLE);
-            final TextView t1 = (TextView) findViewById(R.id.Name);
+            t1 = (TextView) findViewById(R.id.Name);
             t1.setVisibility(View.INVISIBLE);
-            final TextView t2 = (TextView) findViewById(R.id.Race);
-          t2.setVisibility(View.INVISIBLE);
-            final TextView t3 = (TextView) findViewById(R.id.Info);
+            t2 = (TextView) findViewById(R.id.Race);
+            t2.setVisibility(View.INVISIBLE);
+            t3 = (TextView) findViewById(R.id.Info);
             t3.setVisibility(View.INVISIBLE);
-
             i1 = (ImageView) findViewById(R.id.Pic);
-           i1.setVisibility(View.INVISIBLE);
-            final TextView t4 = (TextView) findViewById(R.id.textView4);
-            t4.setVisibility(View.INVISIBLE);
-            final TextView t5 = (TextView) findViewById(R.id.textView5);
+            i1.setVisibility(View.INVISIBLE);
+            t5 = (TextView) findViewById(R.id.textView5);
             t5.setVisibility(View.INVISIBLE);
-            final TextView t6 = (TextView) findViewById(R.id.textView3);
-            t6.setVisibility(View.INVISIBLE);
+            t4= (TextView) findViewById(R.id.idspecies);
+            t4.setVisibility(View.INVISIBLE);
         }
+      //  for (int i = 0; i <pet.size()-1 ; i++) {
+        //    if (pet.get(i).getSpecies().equals(petIntent)) {
+          //      count = i;
+            //}
+if(petIntent.equals("Dog")
+        ){count=0;
+}else if (petIntent.equals("Cat")){
+            count=1;
+}
+
+                    final TextView t4 = (TextView) findViewById(R.id.idspecies);
+                    t4.setText( pet.get(count).getSpecies());
+                    final TextView t1 = (TextView) findViewById(R.id.Name);
+                    t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
+                    final TextView t2 = (TextView) findViewById(R.id.Race);
+                    t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
+                    final ImageView i1 = (ImageView) findViewById(R.id.Pic);
+                    i1.setImageResource(pet.get(count).image);
+                    final TextView t3 = (TextView) findViewById(R.id.Info);
+                    t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
+              //  }
+
+
+
+
 
          button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-
                                           count++;
-                                          if (count > 2) {
+                                          if (count > pet.size()-1 ) {
                                               count = 0;
                                           }
-                                          if(getIntent().getExtras().getString("Species").equals("dog")) {
-                                              final TextView t1 = (TextView) findViewById(R.id.Name);
-                                              t1.setText(dog.get(count).name);
-                                              final TextView t2 = (TextView) findViewById(R.id.Race);
 
-                                              t2.setText(dog.get(count).race);
+
+                                          while(!(pet.get(count).getSpecies().equals(petIntent))){count++;}
+
+
+
+                                              final TextView t4 = (TextView) findViewById(R.id.idspecies);
+                                              t4.setText(pet.get(count).getSpecies());
+                                              final TextView t1 = (TextView) findViewById(R.id.Name);
+                                              t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
+                                              final TextView t2 = (TextView) findViewById(R.id.Race);
+                                              t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
                                               final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-                                              i1.setImageResource(dog.get(count).image);
+                                              i1.setImageResource(pet.get(count).image);
                                               final TextView t3 = (TextView) findViewById(R.id.Info);
-                                              t3.setText(dog.get(count).text);
-                                          }else if(getIntent().getExtras().getString("Species").equals("cat")) {
-                                              final TextView t1 = (TextView) findViewById(R.id.Name);
-                                              t1.setText(cat.get(count).name);
-                                              final TextView t2 = (TextView) findViewById(R.id.Race);
-                                              t2.setText(cat.get(count).race);
-                                          }
+                                              t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
 
-
-
+                                         }
                                       }
 
 
 
-                                  }
         );
 
          button2 = (Button) findViewById(R.id.button2);
@@ -135,24 +143,22 @@ public class BrowseActivity extends AppCompatActivity {
 
                 count--;
                 if (count < 0) {
-                    count = 2;
+                    count = pet.size()-1;
                 }
-                if(getIntent().getExtras().getString("Species").equals("dog")) {
-                    final TextView t1 = (TextView) findViewById(R.id.Name);
-                    t1.setText(dog.get(count).name);
-                    final TextView t2 = (TextView) findViewById(R.id.Race);
 
-                    t2.setText(dog.get(count).race);
-                    final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-                    i1.setImageResource(dog.get(count).image);
-                    final TextView t3 = (TextView) findViewById(R.id.Info);
-                    t3.setText(dog.get(count).text);
-                }else if(getIntent().getExtras().getString("Species").equals("cat")) {
+                while(!(pet.get(count).getSpecies().equals(petIntent))){count--;}
+
+                    final TextView t4 = (TextView) findViewById(R.id.idspecies);
+                    t4.setText( pet.get(count).getSpecies());
                     final TextView t1 = (TextView) findViewById(R.id.Name);
-                    t1.setText(cat.get(count).name);
+                    t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
                     final TextView t2 = (TextView) findViewById(R.id.Race);
-                    t2.setText(cat.get(count).race);
-                }
+                    t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
+                    final ImageView i1 = (ImageView) findViewById(R.id.Pic);
+                    i1.setImageResource(pet.get(count).image);
+                    final TextView t3 = (TextView) findViewById(R.id.Info);
+                    t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
+
 
 
             }
@@ -166,13 +172,7 @@ public class BrowseActivity extends AppCompatActivity {
 
         savedInstanceState.putInt("bla", count);
     }
-    public static Intent makeIntent(Context context,Dog dog){
-        Intent intent =new Intent(context,BrowseActivity.class);
-        intent.putExtra("com.example.alex.myapplication.BrowseActivity- name",dog.getName());
-        return intent;
-    }
+
 
 }
-
-
 
