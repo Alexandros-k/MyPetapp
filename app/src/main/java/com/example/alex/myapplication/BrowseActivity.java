@@ -22,7 +22,7 @@ public class BrowseActivity extends AppCompatActivity {
     TextView t4;
     TextView t5;
     ImageView i1;
-    
+
     ArrayList<Pet> pet = new ArrayList<>();
     Pet p1 =new Pet("Dog","Jack", "canis", R.drawable.canis, "dasd");
     Pet p2 =new Pet("Cat","liono", "British_short_hair", R.drawable.british_short_hair, "dasd");
@@ -109,12 +109,19 @@ if(petIntent.equals("Dog")
                                       @Override
                                       public void onClick(View v) {
                                           count++;
+
                                           if (count > pet.size()-1 ) {
+
                                               count = 0;
                                           }
 
+                                          while(!(pet.get(count).getSpecies().equals(petIntent))){
+                                              count++;
+                                              if (count > pet.size()-1 ) {
 
-                                          while(!(pet.get(count).getSpecies().equals(petIntent))){count++;}
+                                              count = 0;
+                                          }}
+
 
 
 
@@ -146,7 +153,12 @@ if(petIntent.equals("Dog")
                     count = pet.size()-1;
                 }
 
-                while(!(pet.get(count).getSpecies().equals(petIntent))){count--;}
+                while(!(pet.get(count).getSpecies().equals(petIntent))){
+                    count--;
+                    if (count < 0) {
+                        count = pet.size()-1;
+                    }
+                }
 
                     final TextView t4 = (TextView) findViewById(R.id.idspecies);
                     t4.setText( pet.get(count).getSpecies());
