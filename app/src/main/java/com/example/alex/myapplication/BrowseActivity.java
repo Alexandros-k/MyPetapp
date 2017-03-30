@@ -22,7 +22,7 @@ public class BrowseActivity extends AppCompatActivity {
     TextView t4;
     TextView t5;
     ImageView i1;
-
+    int gg;
     ArrayList<Pet> pet = new ArrayList<>();
     Pet p1 =new Pet("Dog","Jack", "canis", R.drawable.canis, "dasd");
     Pet p2 =new Pet("Cat","liono", "British_short_hair", R.drawable.british_short_hair, "dasd");
