@@ -5,4 +5,30 @@
     <string name="Specie">specie :</string>
     <string name="next">next</string>
     <string name="previous">previous</string>
+    <string name="Dogs">Dogs</string>
+    <string name="Cats">Cats</string>
+    <string-array name="pet_names_xml">pet_names
+        <item> Jack</item>
+        <item> liono</item>
+        <item> jack</item>
+        <item>nick </item>
+        <item>chitara </item>
+        <item>jack </item>
+        <item> rex</item>
+        <item>tigra </item>
+        <item>Azor </item>
+
+    </string-array>
+    <string-array name="pet_breeds_xml">pet_breeds
+        <item>canis </item>
+        <item>British_shorth_hair</item>
+        <item>canis</item>
+        <item>colley</item>
+        <item> Maine_coon</item>
+        <item> canis</item>
+        <item> labrador</item>
+        <item>Ragdoll </item>
+        <item> canis</item>
+        <item> husky</item>
+    </string-array>
 </resources>

@@ -5,15 +5,16 @@ package com.example.alex.myapplication;
  */
 
 public class Pet {
-    String name,race,text,species;
+    String name,race,text,species,id;
     int image;
 
-    public Pet(String species, String name, String race,  int image, String text) {
+    public Pet(String species, String name, String race,  int image, String text,String id) {
         this.name = name;
         this.race = race;
         this.text = text;
         this.species = species;
         this.image = image;
+        this.id=id;
     }
 
     public String getName() {
@@ -54,5 +55,13 @@ public class Pet {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
