@@ -32,15 +32,29 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, PetDetailsActivity.class);
-                intent.putExtra("Species", "Dog");
+                Intent intent = null;
+                switch(position) {
+                    case 0:
+                        intent = new Intent(MainActivity.this, PetDetailsActivity.class);
+                        intent.putExtra("Species", "Dog");
+                        break;
+                    case 1:
+                        intent = new Intent(MainActivity.this, PetDetailsActivity.class);
+                        intent.putExtra("Species", "Cat");
+                        break;
+                    case 2:
+                        intent = new Intent(MainActivity.this, PetDetailsActivity.class);
+                        intent.putExtra("Species", "Other");
+                        break;
+                }
+
 
                 startActivity(intent);
             }
         });
+/**
+     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, PetDetailsActivity.class);
                 intent.putExtra("Species", "Cat");
@@ -61,44 +75,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+**/
 
 
 
 
 
     }
-
-
-
-
-private void registerClickCallBack() {
-    ListView listView = (ListView) findViewById(SpeciesView);
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
-            intent.putExtra("Species", "Dog");
-
-            startActivity(intent);
-        }
-    });
 }
 
 
 
-    private void speciesCreate(){
 
 
-        String[] species = {"Dogs", "Cats", "Other"};
 
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<String>(this, R.layout.speciesview, species);
 
-        ListView list=(ListView) findViewById(SpeciesView);
-        list.setAdapter(adapter);
 
-    }
-}
 
 /**button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +141,31 @@ public void onClick(View v) {
  return true;
  }
 
+ private void registerClickCallBack() {
+ ListView listView = (ListView) findViewById(SpeciesView);
+ listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+ @Override
+ public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+ Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
+ intent.putExtra("Species", "Dog");
 
+ startActivity(intent);
+ }
+ });
+ }
+ private void speciesCreate(){
+
+
+ String[] species = {"Dogs", "Cats", "Other"};
+
+ ArrayAdapter<String> adapter = new
+ ArrayAdapter<String>(this, R.layout.speciesview, species);
+
+ ListView list=(ListView) findViewById(SpeciesView);
+ list.setAdapter(adapter);
+
+ }
+ }
  **/
 
 

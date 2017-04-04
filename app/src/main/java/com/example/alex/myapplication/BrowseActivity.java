@@ -3,6 +3,7 @@ package com.example.alex.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,15 +24,16 @@ public class BrowseActivity extends AppCompatActivity {
     ImageView i1;
 
     ArrayList<Pet> pet = new ArrayList<>();
+
     Pet p1 =new Pet("Dog","Jack", "canis", R.drawable.canis, "dasd","jc");
     Pet p2 =new Pet("Cat","liono", "British_short_hair", R.drawable.british_short_hair, "dasd","lb");
-    Pet p3 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd","jco");
+    Pet p3 =new Pet("Other","Sala", "snake", R.drawable.canis, "dasd","jco");
     Pet p4 =new Pet("Dog","Nick", "colley", R.drawable.colley, "dasd","nc");
     Pet p5 =new Pet("Cat","chitara", "Maine_coon", R.drawable.maine_coon, "dasd","cm");
-    Pet p6 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd","jco1");
+    Pet p6 =new Pet("Other","Spidy", "Spider", R.drawable.canis, "dasd","jco1");
     Pet p7 =new Pet("Dog","Rex", "labrador", R.drawable.lab, "dasd","rl");
     Pet p8 =new Pet("Cat","tigra", "Ragdoll", R.drawable.ragdoll, "dasd","tr");
-    Pet p9 =new Pet("Other","Jack", "canis", R.drawable.canis, "dasd","jc");
+    Pet p9 =new Pet("Other","Venom", "symbiot", R.drawable.canis, "dasd","jc");
     Pet p10 =new Pet("Dog","Azor", "husky", R.drawable.husky, "dasd","ah");
 
 
@@ -59,23 +61,23 @@ public class BrowseActivity extends AppCompatActivity {
         pet.add(p10);
 
 
-        final String petIntent= getIntent().getExtras().getString("Species");
-
-
-        for (int i = 0; i <pet.size()-1 ; i++) {
-
-            if(petIntent.equals(pet.get(i))) {
-
+        final String petIntent1= getIntent().getExtras().getString("Id");
+        Log.d("inten",petIntent1);
+        for (int i = 0; i <pet.size() ; i++) {
+           Log.d("before if",petIntent1);
+            if(pet.get(i).getName().equals(petIntent1)) {
+                Log.d("after if",pet.get(i).getName());
+                Log.d("after if",petIntent1);
                 final TextView t4 = (TextView) findViewById(R.id.idspecies);
                 t4.setText(pet.get(i).getSpecies());
                 final TextView t1 = (TextView) findViewById(R.id.Name);
-                t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
+                t1.setText(pet.get(i).getSpecies() + "'name :" + pet.get(i).getName());
                 final TextView t2 = (TextView) findViewById(R.id.Race);
-                t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
+                t2.setText(pet.get(i).getSpecies() + "'race :" + pet.get(i).race);
                 final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-                i1.setImageResource(pet.get(count).image);
+                i1.setImageResource(pet.get(i).image);
                 final TextView t3 = (TextView) findViewById(R.id.Info);
-                t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
+                t3.setText(pet.get(i).getSpecies() + "'info :" + pet.get(i).text);
             }
 
         }
