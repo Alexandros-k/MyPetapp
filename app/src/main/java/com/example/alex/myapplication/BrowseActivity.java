@@ -3,7 +3,6 @@ package com.example.alex.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,12 +61,11 @@ public class BrowseActivity extends AppCompatActivity {
 
 
         final String petIntent1= getIntent().getExtras().getString("Id");
-        Log.d("inten",petIntent1);
+
         for (int i = 0; i <pet.size() ; i++) {
-           Log.d("before if",petIntent1);
+
             if(pet.get(i).getName().equals(petIntent1)) {
-                Log.d("after if",pet.get(i).getName());
-                Log.d("after if",petIntent1);
+
                 final TextView t4 = (TextView) findViewById(R.id.idspecies);
                 t4.setText(pet.get(i).getSpecies());
                 final TextView t1 = (TextView) findViewById(R.id.Name);
@@ -98,118 +96,3 @@ public class BrowseActivity extends AppCompatActivity {
 
 }
 
-/**
- *  if (petIntent.equals("Other")) {
-
- h1 = (TextView) findViewById(R.id.hidden);
- h1.setVisibility(View.VISIBLE);
- t1 = (TextView) findViewById(R.id.Name);
- t1.setVisibility(View.INVISIBLE);
- t2 = (TextView) findViewById(R.id.Race);
- t2.setVisibility(View.INVISIBLE);
- t3 = (TextView) findViewById(R.id.Info);
- t3.setVisibility(View.INVISIBLE);
- i1 = (ImageView) findViewById(R.id.Pic);
- i1.setVisibility(View.INVISIBLE);
- t5 = (TextView) findViewById(R.id.textView5);
- t5.setVisibility(View.INVISIBLE);
- t4= (TextView) findViewById(R.id.idspecies);
- t4.setVisibility(View.INVISIBLE);
- }
- //  for (int i = 0; i <pet.size()-1 ; i++) {
- //    if (pet.get(i).getSpecies().equals(petIntent)) {
- //      count = i;
- //}
- if(petIntent.equals("Dog")
- ){count=0;
- }else if (petIntent.equals("Cat")){
- count=1;
- }
-
- final TextView t4 = (TextView) findViewById(R.id.idspecies);
- t4.setText( pet.get(count).getSpecies());
- final TextView t1 = (TextView) findViewById(R.id.Name);
- t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
- final TextView t2 = (TextView) findViewById(R.id.Race);
- t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
- final ImageView i1 = (ImageView) findViewById(R.id.Pic);
- i1.setImageResource(pet.get(count).image);
- final TextView t3 = (TextView) findViewById(R.id.Info);
- t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
- //  }
-
-
- button = (Button) findViewById(R.id.button);
- button.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View v) {
-count++;
-
-if (count > pet.size()-1 ) {
-
-count = 0;
-}
-
-while(!(pet.get(count).getSpecies().equals(petIntent))){
-count++;
-if (count > pet.size()-1 ) {
-
-count = 0;
-}}
-
-
-
-
-final TextView t4 = (TextView) findViewById(R.id.idspecies);
-t4.setText(pet.get(count).getSpecies());
-final TextView t1 = (TextView) findViewById(R.id.Name);
-t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
-final TextView t2 = (TextView) findViewById(R.id.Race);
-t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
-final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-i1.setImageResource(pet.get(count).image);
-final TextView t3 = (TextView) findViewById(R.id.Info);
-t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
-
-}
-}
-
-
-
- );
-
- button2 = (Button) findViewById(R.id.button2);
- button2.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View v) {
-
-count--;
-if (count < 0) {
-count = pet.size()-1;
-}
-
-while(!(pet.get(count).getSpecies().equals(petIntent))){
-count--;
-if (count < 0) {
-count = pet.size()-1;
-}
-}
-
-final TextView t4 = (TextView) findViewById(R.id.idspecies);
-t4.setText( pet.get(count).getSpecies());
-final TextView t1 = (TextView) findViewById(R.id.Name);
-t1.setText(pet.get(count).getSpecies() + "'name :" + pet.get(count).getName());
-final TextView t2 = (TextView) findViewById(R.id.Race);
-t2.setText(pet.get(count).getSpecies() + "'race :" + pet.get(count).race);
-final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-i1.setImageResource(pet.get(count).image);
-final TextView t3 = (TextView) findViewById(R.id.Info);
-t3.setText(pet.get(count).getSpecies() + "'info :" + pet.get(count).text);
-
-
-
-}
-});
- *
- *
- * **/
