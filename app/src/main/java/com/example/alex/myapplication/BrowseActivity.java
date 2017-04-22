@@ -11,6 +11,20 @@ import java.util.ArrayList;
 
 public class BrowseActivity extends AppCompatActivity {
 
+
+
+
+    Pet p1 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
+    Pet p2 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.british_short_hair);
+    Pet p3 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
+    Pet p4 =new Pet("jack","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.colley);
+    Pet p5 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.maine_coon);
+    Pet p6 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
+    Pet p7 =new Pet("nick","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.lab);
+    Pet p8 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.ragdoll);
+    Pet p9 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
+    Pet p10 =new Pet("rain","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.husky);
+
     int count ;
     Button button;
     Button button2;
@@ -22,18 +36,7 @@ public class BrowseActivity extends AppCompatActivity {
     TextView t5;
     ImageView i1;
 
-    ArrayList<Pet> pet = new ArrayList<>();
 
-    Pet p1 =new Pet("Dog","Jack", "canis", R.drawable.canis, "dasd","jc");
-    Pet p2 =new Pet("Cat","liono", "British_short_hair", R.drawable.british_short_hair, "dasd","lb");
-    Pet p3 =new Pet("Other","Sala", "snake", R.drawable.canis, "dasd","jco");
-    Pet p4 =new Pet("Dog","Nick", "colley", R.drawable.colley, "dasd","nc");
-    Pet p5 =new Pet("Cat","chitara", "Maine_coon", R.drawable.maine_coon, "dasd","cm");
-    Pet p6 =new Pet("Other","Spidy", "Spider", R.drawable.canis, "dasd","jco1");
-    Pet p7 =new Pet("Dog","Rex", "labrador", R.drawable.lab, "dasd","rl");
-    Pet p8 =new Pet("Cat","tigra", "Ragdoll", R.drawable.ragdoll, "dasd","tr");
-    Pet p9 =new Pet("Other","Venom", "symbiot", R.drawable.canis, "dasd","jc");
-    Pet p10 =new Pet("Dog","Azor", "husky", R.drawable.husky, "dasd","ah");
 
 
 
@@ -47,7 +50,7 @@ public class BrowseActivity extends AppCompatActivity {
             count = savedInstanceState.getInt("bla", count);
         }
 
-
+        final  ArrayList<Pet> pet = new ArrayList<>();
         pet.add(p1);
         pet.add(p2);
         pet.add(p3);
@@ -60,6 +63,7 @@ public class BrowseActivity extends AppCompatActivity {
         pet.add(p10);
 
 
+
         final String petIntent1= getIntent().getExtras().getString("Id");
 
         for (int i = 0; i <pet.size() ; i++) {
@@ -68,14 +72,14 @@ public class BrowseActivity extends AppCompatActivity {
 
                 final TextView t4 = (TextView) findViewById(R.id.idspecies);
                 t4.setText(pet.get(i).getSpecies());
-                final TextView t1 = (TextView) findViewById(R.id.Name);
+                final TextView t1 = (TextView) findViewById(R.id.IdName);
                 t1.setText(pet.get(i).getSpecies() + "'name :" + pet.get(i).getName());
-                final TextView t2 = (TextView) findViewById(R.id.Race);
-                t2.setText(pet.get(i).getSpecies() + "'race :" + pet.get(i).race);
+                final TextView t2 = (TextView) findViewById(R.id.idspecies);
+                t2.setText(pet.get(i).getSpecies() + "'race :" + pet.get(i).getBreed());
                 final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-                i1.setImageResource(pet.get(i).image);
-                final TextView t3 = (TextView) findViewById(R.id.Info);
-                t3.setText(pet.get(i).getSpecies() + "'info :" + pet.get(i).text);
+                i1.setImageResource(pet.get(i).getImageUri());
+                final TextView t3 = (TextView) findViewById(R.id.idComments);
+                t3.setText(pet.get(i).getSpecies() + "'info :" + pet.get(i).getComments());
             }
 
         }

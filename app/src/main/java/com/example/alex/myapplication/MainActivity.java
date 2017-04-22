@@ -12,13 +12,13 @@ import static com.example.alex.myapplication.R.id.SpeciesView;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    PetDbHelper mPetDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity);
-
+        mPetDbHelper = new PetDbHelper(this);
         String[] species = {"Dogs", "Cats", "Other"};
 
         ArrayAdapter<String> adapter = new
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
 
 
