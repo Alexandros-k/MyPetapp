@@ -22,16 +22,16 @@ public class PetLab {
         mDatabase = new PetDbHelper(mContext)
                 .getWritableDatabase();
         mPets = new ArrayList<>();
-        Pet p1 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-        Pet p2 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.british_short_hair);
-        Pet p3 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-        Pet p4 =new Pet("jack","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.colley);
-        Pet p5 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.maine_coon);
-        Pet p6 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-        Pet p7 =new Pet("nick","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.lab);
-        Pet p8 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.ragdoll);
-        Pet p9 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-        Pet p10 =new Pet("rain","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.husky);
+        Pet p1 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog", R.drawable.canis);
+        Pet p2 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.british_short_hair);
+        Pet p3 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.canis);
+        Pet p4 =new Pet("jack","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.colley);
+        Pet p5 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.maine_coon);
+        Pet p6 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.canis);
+        Pet p7 =new Pet("nick","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.lab);
+        Pet p8 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.ragdoll);
+        Pet p9 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.canis);
+        Pet p10 =new Pet("rain","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog",R.drawable.husky);
 
         mPets.add(p1);
         mPets.add(p2);

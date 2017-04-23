@@ -5,13 +5,13 @@ package com.example.alex.myapplication;
  */
 
 public class Pet {
-   private String name,dateOfBirth,gender,breed,colour,distinguishingMarks,chipID,ownerName,ownerAddress,
-    ownerPhone,vetName,vetAddress,vetPhone,comments,species,id;
+    private String name, dateOfBirth, gender, breed, colour, distinguishingMarks, chipID, ownerName, ownerAddress,
+            ownerPhone, vetName, vetAddress, vetPhone, comments, species, id;
     int imageUri;
 
     public Pet(String name, String dateOfBirth, String gender, String breed, String colour, String distinguishingMarks,
-                    String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress,
-                    String vetPhone,String comments, String species, String id, int imageUri) {
+               String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress,
+               String vetPhone, String comments, String species, int imageUri) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -27,7 +27,6 @@ public class Pet {
         this.vetPhone = vetPhone;
         this.comments = comments;
         this.species = species;
-        this.id = id;
         this.imageUri = imageUri;
     }
 

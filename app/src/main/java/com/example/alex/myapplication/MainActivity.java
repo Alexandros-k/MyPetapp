@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity);
         mPetDbHelper = new PetDbHelper(this);
+        mPetDbHelper.initDb();
         String[] species = {"Dogs", "Cats", "Other"};
 
         ArrayAdapter<String> adapter = new

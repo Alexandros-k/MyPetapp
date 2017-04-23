@@ -7,25 +7,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BrowseActivity extends AppCompatActivity {
 
-
-
-
-    Pet p1 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-    Pet p2 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.british_short_hair);
-    Pet p3 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-    Pet p4 =new Pet("jack","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.colley);
-    Pet p5 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.maine_coon);
-    Pet p6 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-    Pet p7 =new Pet("nick","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.lab);
-    Pet p8 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.ragdoll);
-    Pet p9 =new Pet("kiko","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.canis);
-    Pet p10 =new Pet("rain","1984", "male","pitbul","black","none","1238","Alex","nikaia","23432","kostas","peiraias","23423432","all good","dog","3", R.drawable.husky);
-
-    int count ;
+    int count;
     Button button;
     Button button2;
     TextView h1;
@@ -36,12 +22,6 @@ public class BrowseActivity extends AppCompatActivity {
     TextView t5;
     ImageView i1;
 
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,25 +30,16 @@ public class BrowseActivity extends AppCompatActivity {
             count = savedInstanceState.getInt("bla", count);
         }
 
-        final  ArrayList<Pet> pet = new ArrayList<>();
-        pet.add(p1);
-        pet.add(p2);
-        pet.add(p3);
-        pet.add(p4);
-        pet.add(p5);
-        pet.add(p6);
-        pet.add(p7);
-        pet.add(p8);
-        pet.add(p9);
-        pet.add(p10);
+        PetDbHelper myDb = new PetDbHelper(this);
+
+        final List<Pet> pet = myDb.getPets();
 
 
+        final String petIntent1 = getIntent().getExtras().getString("Id");
 
-        final String petIntent1= getIntent().getExtras().getString("Id");
+        for (int i = 0; i < pet.size(); i++) {
 
-        for (int i = 0; i <pet.size() ; i++) {
-
-            if(pet.get(i).getName().equals(petIntent1)) {
+            if (pet.get(i).getName().equals(petIntent1)) {
 
                 final TextView t4 = (TextView) findViewById(R.id.idspecies);
                 t4.setText(pet.get(i).getSpecies());
@@ -83,9 +54,6 @@ public class BrowseActivity extends AppCompatActivity {
             }
 
         }
-
-
-
 
 
     }

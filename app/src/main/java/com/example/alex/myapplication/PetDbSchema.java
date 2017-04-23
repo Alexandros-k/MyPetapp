@@ -29,7 +29,6 @@ public class PetDbSchema {
         public static final String COLUMN_NAME_VET_PHONE = "vet_phone";
         public static final String COLUMN_NAME_COMMENTS = "comments";
         public static final String COLUMN_NAME_SPECIES = "species";
-        public static final String COLUMN_NAME_ID = "name_id";
         public static final String COLUMN_NAME_IMAGE_URI = "image_uri";
         public static final String TEXT_TYPE = " TEXT";
         public static final String INT_TYPE = " INTEGER";
