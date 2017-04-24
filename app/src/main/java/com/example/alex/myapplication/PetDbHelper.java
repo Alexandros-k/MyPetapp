@@ -74,7 +74,7 @@ public class PetDbHelper extends SQLiteOpenHelper {
                 PetDbSchema.PetTable.COLUMN_NAME_VET_PHONE + INT_TYPE + COMMA_SEP +
                 PetDbSchema.PetTable.COLUMN_NAME_COMMENTS + TEXT_TYPE + COMMA_SEP +
                 PetDbSchema.PetTable.COLUMN_NAME_SPECIES + TEXT_TYPE + COMMA_SEP +
-                PetDbSchema.PetTable.COLUMN_NAME_IMAGE_URI + INT_TYPE + ")");
+                PetDbSchema.PetTable.COLUMN_NAME_IMAGE_URI + INT_TYPE +")");
 
     }
 
@@ -147,11 +147,9 @@ public class PetDbHelper extends SQLiteOpenHelper {
         int speciesColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_SPECIES);
         int commentsColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_COMMENTS);
         int imageUriColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_IMAGE_URI);
-
         int ownerNameColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_OWNER_NAME);
         int ownerAddressColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_OWNER_ADDRESS);
         int ownerPhoneNumberColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_OWNER_PHONE);
-
         int vetNameColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_VET_NAME);
         int vetAddressColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_VET_ADDRESS);
         int vetPhoneNumberColumn = cursor.getColumnIndexOrThrow(PetDbSchema.PetTable.COLUMN_NAME_VET_PHONE);
@@ -201,16 +199,16 @@ public class PetDbHelper extends SQLiteOpenHelper {
 
     private List<Pet> getPetList() {
         List<Pet> pets = new ArrayList<>();
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.canis));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.british_short_hair));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
-        pets.add(new Pet("jack", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.colley));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.maine_coon));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
-        pets.add(new Pet("nick", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.lab));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.ragdoll));
-        pets.add(new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
-        pets.add(new Pet("rain", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.husky));
+        pets.add(new Pet("riko", "1983", "male", "canis", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.canis));
+        pets.add(new Pet("kika", "1984", "female", "british short hair", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.british_short_hair));
+        pets.add(new Pet("lock", "1985", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
+        pets.add(new Pet("jack", "1987", "male", "colley", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.colley));
+        pets.add(new Pet("rover", "1984", "male", "maine coon", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.maine_coon));
+        pets.add(new Pet("summer", "1982", "fale", "canis", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
+        pets.add(new Pet("nick", "1988", "male", "lab", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.lab));
+        pets.add(new Pet("leto", "1986", "male", "ragdoll", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.ragdoll));
+        pets.add(new Pet("kiko", "1999", "male", "canis", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis));
+        pets.add(new Pet("rain", "1984", "male", "husky", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.husky));
 
         return pets;
     }

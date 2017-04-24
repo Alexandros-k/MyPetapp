@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alex.myapplication.PetDetailsActivity">
+    tools:context="com.example.alex.myapplication.PetDetailsActivity"
+    android:background="#000000">
 
 
     <ListView
@@ -18,5 +19,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.076"
-        app:layout_constraintHorizontal_bias="0.074"/>
+        app:layout_constraintHorizontal_bias="0.074"
+        android:dividerHeight="20.0sp"
+
+        />
 </android.support.constraint.ConstraintLayout>
