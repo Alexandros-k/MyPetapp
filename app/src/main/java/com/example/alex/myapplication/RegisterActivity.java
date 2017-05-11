@@ -69,10 +69,11 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                     // stelnei name -last name ston server
                 findViewById(R.id.idRegisterButton).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         String firstName =Name.getText().toString();
                         String lastName =surname.getText().toString();
                         insertStudent(firstName,lastName);

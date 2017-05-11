@@ -1,6 +1,5 @@
 package com.example.alex.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,10 +58,14 @@ public class BrowseActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
-                String userDetailsName = preferences.getString("newUsername", "not exist");
-                     if(userDetailsName!=null) {
+                String userDetailsName = preferences.getString("", "not exist");
+                if(userDetailsName==null) {
+
+
                          Intent intent = new Intent(BrowseActivity.this, PetDetailsActivity.class);
 
 
@@ -70,16 +73,13 @@ public class BrowseActivity extends AppCompatActivity {
                          intent.putExtra("Id", result);
 
                          startActivity(intent);
-                     }else{
+                  }else{
 
-                             Context context = getApplicationContext();
-                             CharSequence text = "details are only available to registered users";
-                             int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(BrowseActivity.this, "please register first", Toast.LENGTH_SHORT);
+                toast.show();
 
-                             Toast toast = Toast.makeText(context, text, duration);
-                             toast.show();
+            }
 
-                         }
                      }
 
 
@@ -97,7 +97,7 @@ public class BrowseActivity extends AppCompatActivity {
 
 
         if(preferences!=null) {
-            login.setVisible(false);
+            login.setVisible(true);
             logout.setVisible(true);
 
         }else{
@@ -115,20 +115,21 @@ public class BrowseActivity extends AppCompatActivity {
                 Intent LoginScreen = new Intent(BrowseActivity.this,LoginActivity.class);
                 startActivity(LoginScreen);
 
+
                 return true;
 
             case R.id.idLogout:
                 SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.remove("newUsername");
                 editor.clear();
-
                 return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
  /*
         Pet p1 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.canis);

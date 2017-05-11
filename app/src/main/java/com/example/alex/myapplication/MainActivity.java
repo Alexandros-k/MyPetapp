@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent = null;
                 switch(position) {
                     case 0:
@@ -54,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("Species", "Other");
                         break;
                 }
-
-
                 startActivity(intent);
+
+
+
             }
         });
 
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(preferences!=null) {
-            login.setVisible(false);
+            login.setVisible(true);
             logout.setVisible(true);
 
         }else{
