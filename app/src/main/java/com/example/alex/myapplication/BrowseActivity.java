@@ -1,102 +1,144 @@
 package com.example.alex.myapplication;
 
-
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import static com.example.alex.myapplication.R.id.PetDetailsId;
+
 public class BrowseActivity extends AppCompatActivity {
 
-    int count;
-    Button button;
-    Button button2;
+    PetDbHelper myDb;
 
-    TextView t1;
-    TextView t2;
-    TextView t3;
-    TextView t4;
-    TextView t5;
-    TextView t6;
-    TextView t7;
-    TextView t8;
-    TextView t9;
-    TextView t10;
-    TextView t11;
-    TextView t12;
-    TextView t13;
-    TextView t14;
-    TextView t15;
-    ImageView i1;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.browseactivity);
-        if (savedInstanceState != null) {
-            count = savedInstanceState.getInt("bla", count);
-        }
+        setContentView(R.layout.activity_pet_details);
 
-        PetDbHelper myDb = new PetDbHelper(this);
+        myDb = new PetDbHelper(this);
+
+
+        final String petIntent = getIntent().getExtras().getString("Species");
 
         final List<Pet> pet = myDb.getPets();
 
 
-        final String petIntent1 = getIntent().getExtras().getString("Id");
+        ListView listview = (ListView) findViewById(PetDetailsId);
+        PetAdaptrer petAdaptrer = new PetAdaptrer(getApplicationContext(), R.layout.activity_pet_details);
+        listview.setAdapter(petAdaptrer);
 
-        for (int i = 0; i < pet.size(); i++) {
+        for (i = 0; i < pet.size(); i++)
 
-            if (pet.get(i).getName().equals(petIntent1)) {
+        {
 
-                final TextView t1 = (TextView) findViewById(R.id.IdName);
-                t1.setText( " name :" + pet.get(i).getName());
-                final TextView t2 = (TextView) findViewById(R.id.IdDateOfBirth);
-                t2.setText(" Date Of Birth :" + pet.get(i).getDateOfBirth());
-                final TextView t3 = (TextView) findViewById(R.id.idGender);
-                t3.setText(" Gender :" + pet.get(i).getGender());
-                final TextView t4 = (TextView) findViewById(R.id.IdBreed);
-                t4.setText(" Breed :" + pet.get(i).getBreed());
-                final TextView t5 = (TextView) findViewById(R.id.idColour);
-                t5.setText( " Colour :" + pet.get(i).getColour());
-                final TextView t6 = (TextView) findViewById(R.id.idDistinguishingMarks);
-                t6.setText(" Distinguishing Marks :" + pet.get(i).getDistinguishingMarks());
-                final TextView t7 = (TextView) findViewById(R.id.idChipId);
-                t7.setText(" ChipID :" + pet.get(i).getChipID());
-                final TextView t8 = (TextView) findViewById(R.id.idOwnerName);
-                t8.setText(" Owner's Name :" + pet.get(i).getOwnerName());
-                final TextView t9 = (TextView) findViewById(R.id.idOwnerAddress);
-                t9.setText(" Owner's Address :" + pet.get(i).getOwnerAddress());
-                final TextView t10 = (TextView) findViewById(R.id.idOwnerPhone);
-                t10.setText( " Owner's Phone :" + pet.get(i).getOwnerPhone());
-                final TextView t11 = (TextView) findViewById(R.id.idVetName);
-                t11.setText(" Vet's Name :"  + pet.get(i).getVetName());
-                final TextView t12 = (TextView) findViewById(R.id.idVetAddress);
-                t12.setText(" Vet's Address :" + pet.get(i).getVetAddress());
-                final TextView t13 = (TextView) findViewById(R.id.idVetPhone);
-                t13.setText(" Vet's Phone :" + pet.get(i).getVetPhone());
-                final TextView t14 = (TextView) findViewById(R.id.idComments);
-                t14.setText(" Comments :" + pet.get(i).getComments());
-                final TextView t15 = (TextView) findViewById(R.id.idspecies);
-                t15.setText(" Species :" + pet.get(i).getSpecies());
-                final ImageView i1 = (ImageView) findViewById(R.id.Pic);
-                i1.setImageResource(pet.get(i).getImageUri());
+            System.out.println(pet.get(i).getSpecies()+"   "+petIntent);
+            if (pet.get(i).getSpecies().equals(petIntent)) {
+
+                PetDataProvider petDataProvider = new PetDataProvider(
+                        pet.get(i).getImageUri(), pet.get(i).getName(), pet.get(i).getBreed());
+                petAdaptrer.add(petDataProvider);
+
             }
-
         }
 
 
-    }
+        final ListView listView = (ListView) findViewById(PetDetailsId);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
+                String userDetailsName = preferences.getString("newUsername", "not exist");
+                     if(userDetailsName!=null) {
+                         Intent intent = new Intent(BrowseActivity.this, PetDetailsActivity.class);
+
+
+                         String result = (String) listView.getItemAtPosition(position).toString();
+                         intent.putExtra("Id", result);
+
+                         startActivity(intent);
+                     }else{
+
+                             Context context = getApplicationContext();
+                             CharSequence text = "details are only available to registered users";
+                             int duration = Toast.LENGTH_SHORT;
+
+                             Toast toast = Toast.makeText(context, text, duration);
+                             toast.show();
+
+                         }
+                     }
+
+
+        });
+
+
+    }
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activity, menu);
+        MenuItem logout = menu.findItem(R.id.idLogout);
+        MenuItem login = menu.findItem(R.id.idLogin);
+        SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
-        savedInstanceState.putInt("bla", count);
+
+        if(preferences!=null) {
+            login.setVisible(false);
+            logout.setVisible(true);
+
+        }else{
+            login.setVisible(true);
+            logout.setVisible(false);
+
+        }
+        return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.idLogin:
+                Intent LoginScreen = new Intent(BrowseActivity.this,LoginActivity.class);
+                startActivity(LoginScreen);
 
+                return true;
 
+            case R.id.idLogout:
+                SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("newUsername");
+                editor.clear();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
-
+ /*
+        Pet p1 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.canis);
+        Pet p2 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "dog", R.drawable.british_short_hair);
+        Pet p3 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis);
+        Pet p4 = new Pet("jack", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.colley);
+        Pet p5 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.maine_coon);
+        Pet p6 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis);
+        Pet p7 = new Pet("nick", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.lab);
+        Pet p8 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Cat", R.drawable.ragdoll);
+        Pet p9 = new Pet("kiko", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Other", R.drawable.canis);
+        Pet p10 = new Pet("rain", "1984", "male", "pitbul", "black", "none", "1238", "Alex", "nikaia", "23432", "kostas", "peiraias", "23423432", "all good", "Dog", R.drawable.husky);
+       */
