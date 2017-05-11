@@ -1,8 +1,12 @@
 package com.example.alex.myapplication;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -96,7 +100,42 @@ public class PetDetailsActivity extends AppCompatActivity {
 
         savedInstanceState.putInt("bla", count);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activity, menu);
+        MenuItem logout = menu.findItem(R.id.idLogout);
+        MenuItem login = menu.findItem(R.id.idLogin);
+        SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
+
+        if(preferences!=null) {
+            login.setVisible(true);
+            logout.setVisible(true);
+
+        }else{
+            login.setVisible(true);
+            logout.setVisible(false);
+
+        }
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+
+            case R.id.idLogout:
+                SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }
 

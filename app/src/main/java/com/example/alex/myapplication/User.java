@@ -4,7 +4,7 @@ package com.example.alex.myapplication;
  * Created by Alex on 5/10/2017.
  */
 
-public class Student {
+public class User {
 
 
     private String firstName;

@@ -21,15 +21,15 @@ public class RegisterActivity extends AppCompatActivity {
     private BroadcastReceiver getAllStudentsResultBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String studentResults = intent.getStringExtra(StudentService.EXTRA_STUDENTS_RESULT);
+            String studentResults = intent.getStringExtra(UserService.EXTRA_USERS_RESULT);
 
-            Student[] students = new Gson().fromJson(studentResults, Student[].class);
+            User[] users = new Gson().fromJson(studentResults, User[].class);
 
             String result = "";
 
-            for (int i = 0; i < students.length; i++) {
-                Student student = students[i];
-                result += student.getFirstName() + "\t" + student.getLastName() + "\t"  + "\n";
+            for (int i = 0; i < users.length; i++) {
+                User user = users[i];
+                result += user.getFirstName() + "\t" + user.getLastName() + "\t"  + "\n";
             }
 
 
@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private BroadcastReceiver createStudentResultBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String resultMsg = intent.getStringExtra(StudentService.EXTRA_CREATE_STUDENT_RESULT);
+            String resultMsg = intent.getStringExtra(UserService.EXTRA_CREATE_USER_RESULT);
 
             Toast.makeText(RegisterActivity.this, resultMsg, Toast.LENGTH_SHORT).show();
         }
@@ -122,10 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
 
-        IntentFilter getStudentsResultIntentFilter = new IntentFilter(StudentService.ACTION_GET_STUDENTS_RESULT);
+        IntentFilter getStudentsResultIntentFilter = new IntentFilter(UserService.ACTION_GET_USERS_RESULT);
         broadcastManager.registerReceiver(getAllStudentsResultBroadcastReceiver, getStudentsResultIntentFilter);
 
-        IntentFilter createStudentResultIntentFilter = new IntentFilter(StudentService.ACTION_CREATE_STUDENT_RESULT);
+        IntentFilter createStudentResultIntentFilter = new IntentFilter(UserService.ACTION_CREATE_USER_RESULT);
         broadcastManager.registerReceiver(createStudentResultBroadcastReceiver, createStudentResultIntentFilter);
     }
 
@@ -139,19 +139,19 @@ public class RegisterActivity extends AppCompatActivity {
         broadcastManager.unregisterReceiver(createStudentResultBroadcastReceiver);
     }
     private void insertStudent(String firstName, String lastName) {
-        Intent intent = new Intent(this, StudentService.class);
-        intent.setAction(StudentService.ACTION_CREATE_STUDENT);
+        Intent intent = new Intent(this, UserService.class);
+        intent.setAction(UserService.ACTION_CREATE_USER);
 
-        intent.putExtra(StudentService.EXTRA_FIRST_NAME, firstName);
-        intent.putExtra(StudentService.EXTRA_LAST_NAME, lastName);
+        intent.putExtra(UserService.EXTRA_FIRST_NAME, firstName);
+        intent.putExtra(UserService.EXTRA_LAST_NAME, lastName);
 
 
         startService(intent);
     }
 
     private void getAllStudents() {
-        Intent intent = new Intent(this, StudentService.class);
-        intent.setAction(StudentService.ACTION_GET_STUDENTS);
+        Intent intent = new Intent(this, UserService.class);
+        intent.setAction(UserService.ACTION_GET_USERS);
 
         startService(intent);
     }

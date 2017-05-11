@@ -18,51 +18,53 @@ import java.net.URL;
  * Created by Alex on 5/10/2017.
  */
 
-public class StudentService extends IntentService {
+public class UserService extends IntentService {
 
-    private static final String LOG_TAG = "StudentService";
+    private static final String LOG_TAG = "UserService";
 
-    public static final String ACTION_CREATE_STUDENT = "com.example.alex.myapplication.CREATE_STUDENT";
-    public static final String ACTION_GET_STUDENTS = "com.example.alex.myapplication.GET_STUDENTS";
+    public static final String ACTION_CREATE_USER = "CREATE_USER";
+    public static final String ACTION_GET_USERS = "GET_USERS";
 
-    public static final String ACTION_CREATE_STUDENT_RESULT = "com.example.alex.myapplication.CREATE_STUDENT_RESULT";
-    public static final String ACTION_GET_STUDENTS_RESULT = "com.example.alex.myapplication.GET_STUDENTS_RESULT";
+    public static final String ACTION_CREATE_USER_RESULT = "CREATE_USER_RESULT";
+    public static final String ACTION_GET_USERS_RESULT = "GET_USERS_RESULT";
 
     public static final String EXTRA_FIRST_NAME = "first.name";
     public static final String EXTRA_LAST_NAME = "last.name";
 
 
-    public static final String EXTRA_CREATE_STUDENT_RESULT = "create.student.result";
-    public static final String EXTRA_STUDENTS_RESULT = "students.result";
+    public static final String EXTRA_CREATE_USER_RESULT = "create.user.result";
+    public static final String EXTRA_USERS_RESULT = "users.result";
 
-    private static final String GET_STUDENTS_URL = "http://hodor.ait.gr:8080/myPets/api";
-    private static final String CREATE_STUDENTS_URL = "http://hodor.ait.gr:8080/myPets/api";
+    private static final String GET_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/";
+    private static final String CREATE_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/username/password";
 
+    private static final String URL_USERNAME = "username";
+    private static final String URL_PASSWORD = "password";
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param //name Used to name the worker thread, important only for debugging.
      */
-    public StudentService() {
-        super("Student Service");
+    public UserService() {
+        super("User Service");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         String action = intent.getAction();
-        if (ACTION_CREATE_STUDENT.equals(action)) {
-            createStudent(intent);
-        } else if (ACTION_GET_STUDENTS.equals(action)) {
-            getStudents(intent);
+        if (ACTION_CREATE_USER.equals(action)) {
+            createUser(intent);
+        } else if (ACTION_GET_USERS.equals(action)) {
+            getUsers(intent);
         } else {
             throw new UnsupportedOperationException("No implementation for action " + action);
         }
     }
 
-    private void createStudent(Intent intent) {
+    private void createUser(Intent intent) {
 
         try {
-            URL url = new URL(CREATE_STUDENTS_URL);
+            URL url = new URL(CREATE_USERS_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -76,17 +78,17 @@ public class StudentService extends IntentService {
             String lastName = intent.getStringExtra(EXTRA_LAST_NAME);
 
 
-            Student student = new Student();
-            student.setFirstName(firstName);
-            student.setLastName(lastName);
+            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
 
 
-            String studentJson = new Gson().toJson(student);
+            String userJson = new Gson().toJson(user);
 
-            Log.d(LOG_TAG, studentJson);
+            Log.d(LOG_TAG, userJson);
 
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
-            writer.write(studentJson);
+            writer.write(userJson);
             writer.flush();
             writer.close();
 
@@ -99,21 +101,21 @@ public class StudentService extends IntentService {
 
             Log.d(LOG_TAG, "The response is: " + response);
 
-            Intent resultIntent = new Intent(ACTION_CREATE_STUDENT_RESULT);
-            resultIntent.putExtra(EXTRA_CREATE_STUDENT_RESULT, "Created student. Server responded with status " + response);
+            Intent resultIntent = new Intent(ACTION_CREATE_USER_RESULT);
+            resultIntent.putExtra(EXTRA_CREATE_USER_RESULT, "Created user. Server responded with status " + response);
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
 
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Exception creating students", e);
+            Log.e(LOG_TAG, "Exception creating users", e);
         }
     }
 
-    private void getStudents(Intent intent) {
+    private void getUsers(Intent intent) {
         InputStream is = null;
 
         try {
-            URL url = new URL(GET_STUDENTS_URL);
+            URL url = new URL(GET_USERS_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -130,8 +132,8 @@ public class StudentService extends IntentService {
             // Convert the InputStream into a bitmap
             String result = convertStreamToString(is);
 
-            Intent resultIntent = new Intent(ACTION_GET_STUDENTS_RESULT);
-            resultIntent.putExtra(EXTRA_STUDENTS_RESULT, result);
+            Intent resultIntent = new Intent(ACTION_GET_USERS_RESULT);
+            resultIntent.putExtra(EXTRA_USERS_RESULT, result);
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
 
