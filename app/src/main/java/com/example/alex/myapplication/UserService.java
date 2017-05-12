@@ -30,13 +30,14 @@ public class UserService extends IntentService {
 
     public static final String EXTRA_FIRST_NAME = "first.name";
     public static final String EXTRA_LAST_NAME = "last.name";
-
+    public static final String EXTRA_USERNAME = "username";
+    public static final String EXTRA_PASSWORD = "password";
 
     public static final String EXTRA_CREATE_USER_RESULT = "create.user.result";
     public static final String EXTRA_USERS_RESULT = "users.result";
 
     private static final String GET_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/";
-    private static final String CREATE_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/username/password";
+    private static final String CREATE_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/";
 
     private static final String URL_USERNAME = "username";
     private static final String URL_PASSWORD = "password";
@@ -64,7 +65,7 @@ public class UserService extends IntentService {
     private void createUser(Intent intent) {
 
         try {
-            URL url = new URL(CREATE_USERS_URL);
+            URL url = new URL(CREATE_USERS_URL+URL_USERNAME+"/"+URL_PASSWORD);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -76,12 +77,14 @@ public class UserService extends IntentService {
 
             String firstName = intent.getStringExtra(EXTRA_FIRST_NAME);
             String lastName = intent.getStringExtra(EXTRA_LAST_NAME);
-
+            String username = intent.getStringExtra(EXTRA_USERNAME);
+            String password = intent.getStringExtra(EXTRA_PASSWORD);
 
             User user = new User();
             user.setFirstName(firstName);
             user.setLastName(lastName);
-
+            user.setUsername(username);
+            user.setPassword(password);
 
             String userJson = new Gson().toJson(user);
 

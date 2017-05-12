@@ -74,9 +74,11 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        String firstName =Name.getText().toString();
+                        String username =registerUsername.getText().toString();
+                        String password =registerPassword.getText().toString();
+                        String firstName = Name.getText().toString();
                         String lastName =surname.getText().toString();
-                        insertStudent(firstName,lastName);
+                        insertStudent(firstName,lastName,username,password);
                     }
                 });
 
@@ -138,13 +140,14 @@ public class RegisterActivity extends AppCompatActivity {
         broadcastManager.unregisterReceiver(getAllStudentsResultBroadcastReceiver);
         broadcastManager.unregisterReceiver(createStudentResultBroadcastReceiver);
     }
-    private void insertStudent(String firstName, String lastName) {
+    private void insertStudent(String firstName, String lastName, String username, String password) {
         Intent intent = new Intent(this, UserService.class);
         intent.setAction(UserService.ACTION_CREATE_USER);
 
         intent.putExtra(UserService.EXTRA_FIRST_NAME, firstName);
         intent.putExtra(UserService.EXTRA_LAST_NAME, lastName);
-
+        intent.putExtra(UserService.EXTRA_USERNAME, username);
+        intent.putExtra(UserService.EXTRA_PASSWORD, password);
 
         startService(intent);
     }
