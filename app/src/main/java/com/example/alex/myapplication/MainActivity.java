@@ -76,9 +76,11 @@ public class MainActivity extends AppCompatActivity {
         MenuItem logout = menu.findItem(R.id.idLogout);
         MenuItem login = menu.findItem(R.id.idLogin);
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
-        String userDetailsName = preferences.getString("newUsername", "not exist");
-        System.out.println(userDetailsName);
-        if(userDetailsName.length()!=0) {
+        String userDetailsName = preferences.getString("newUsername", "");
+        System.out.println("auto einai"+ userDetailsName);
+
+
+        if(userDetailsName.isEmpty()) {
             login.setVisible(true);
             logout.setVisible(false);
 

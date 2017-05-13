@@ -1,6 +1,7 @@
 package com.example.alex.myapplication;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -107,28 +108,26 @@ public class PetDetailsActivity extends AppCompatActivity {
         MenuItem logout = menu.findItem(R.id.idLogout);
         MenuItem login = menu.findItem(R.id.idLogin);
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+        String userDetailsName = preferences.getString("newUsername", "");
+        System.out.println(userDetailsName);
 
+        login.setVisible(false);
 
-        if(preferences!=null) {
-            login.setVisible(true);
-            logout.setVisible(true);
+        logout.setVisible(true);
 
-        }else{
-            login.setVisible(true);
-            logout.setVisible(false);
-
-        }
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-
             case R.id.idLogout:
                 SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
+                editor.commit();
+                Intent LognScreen = new Intent(PetDetailsActivity.this,MainActivity.class);
+                startActivity(LognScreen);
                 return true;
 
 

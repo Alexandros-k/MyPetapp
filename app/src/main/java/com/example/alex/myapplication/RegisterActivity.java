@@ -59,41 +59,38 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText Name = (EditText) findViewById(R.id.idName);
         final EditText surname = (EditText) findViewById(R.id.idSurname);
 
-        final String password = registerPassword.getText().toString();
-        final String confirmPassword= confirmPassWord.getText().toString();
-        final String sName = Name.getText().toString();
-        final String sSurname= surname.getText().toString();
+
 
         Button btnRegister = (Button)findViewById(R.id.idRegButton);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String username= registerUsername.getText().toString();
+                final String password = registerPassword.getText().toString();
+                final String confirmPassword= confirmPassWord.getText().toString();
+                final String firstName = Name.getText().toString();
+                final String lastName= surname.getText().toString();
 
-
-                        if(password.equals(confirmPassword) /*&& confirmPassword.length()>6 && password.length()>6*/
-                               && sName !=null && sSurname != null) {
-                            String username = registerUsername.getText().toString();
-                            String password = registerPassword.getText().toString();
-                            String firstName = Name.getText().toString();
-                            String lastName = surname.getText().toString();
-                            insertStudent(firstName, lastName, username, password);
-
-
-                            SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+                if(firstName.isEmpty() && password.isEmpty() && lastName.isEmpty() && username.isEmpty()){
+                    Toast toast = Toast.makeText(RegisterActivity.this, "fill all fields", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else if( !password.equals(confirmPassword)){
+                    Toast toast = Toast.makeText(RegisterActivity.this, "password does not match confirmation password", Toast.LENGTH_SHORT);
+                    toast.show();
+                          }else if(password.length()<6){
+                    Toast toast = Toast.makeText(RegisterActivity.this, "password must be at least 6 characters", Toast.LENGTH_SHORT);
+                    toast.show();
+                          } else {
+                              insertStudent(firstName, lastName, username, password);
+                              SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("newUsername", username);
                             editor.apply();
+
+
                             Intent loginScreen = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(loginScreen);
-
-                        }else{
-                            Context context = getApplicationContext();
-                            CharSequence text = "FILL ALL FIELDS";
-                            int duration = Toast.LENGTH_SHORT;
-
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
                         }
 
 

@@ -65,7 +65,7 @@ public class UserService extends IntentService {
     private void createUser(Intent intent) {
 
         try {
-            URL url = new URL(CREATE_USERS_URL+URL_USERNAME+"/"+URL_PASSWORD);
+            URL url = new URL(CREATE_USERS_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -118,7 +118,7 @@ public class UserService extends IntentService {
         InputStream is = null;
 
         try {
-            URL url = new URL(GET_USERS_URL);
+            URL url = new URL(GET_USERS_URL+URL_USERNAME+"/"+URL_PASSWORD);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);

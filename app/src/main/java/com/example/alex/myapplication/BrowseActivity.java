@@ -62,8 +62,9 @@ public class BrowseActivity extends AppCompatActivity {
 
                 SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
-                String userDetailsName = preferences.getString("newUsername", "not exist");
-                if(userDetailsName==null) {
+                String userDetailsName = preferences.getString("newUsername", "");
+                System.out.println("auto einai2"+" "+ userDetailsName);
+                if(!userDetailsName.isEmpty()) {
 
 
                          Intent intent = new Intent(BrowseActivity.this, PetDetailsActivity.class);
@@ -94,15 +95,15 @@ public class BrowseActivity extends AppCompatActivity {
         MenuItem logout = menu.findItem(R.id.idLogout);
         MenuItem login = menu.findItem(R.id.idLogin);
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
-
-
-        if(preferences!=null) {
-            login.setVisible(true);
-            logout.setVisible(true);
-
-        }else{
+        String userDetailsName = preferences.getString("newUsername", "");
+        System.out.println(userDetailsName);
+        if(userDetailsName.isEmpty()) {
             login.setVisible(true);
             logout.setVisible(false);
+
+        }else{
+            login.setVisible(false);
+            logout.setVisible(true);
 
         }
         return true;
@@ -123,6 +124,8 @@ public class BrowseActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.commit();
+                Intent LognScreen = new Intent(BrowseActivity.this,MainActivity.class);
+                startActivity(LognScreen);
                 return true;
 
 
