@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,11 +18,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        final EditText loginUsername = (EditText) findViewById(R.id.idNewName);
+        final EditText loginUsername = (EditText) findViewById(R.id.idNewUsername);
         final EditText loginPassword = (EditText) findViewById(R.id.idPassword);
 
-        Button btnLogin = (Button) findViewById(R.id.idLoginButton);
-        Button btnRegister = (Button) findViewById(R.id.idButtonRegister);
+        Button btnLogin = (Button) findViewById(R.id.idLoginButton1);
+        Button btnRegister = (Button) findViewById(R.id.idRegisterButton);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -34,15 +31,14 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(View v) {
 
-                                            String user = loginUsername.getText().toString();
-                                            String password = loginPassword.getText().toString();
+                                            String username = loginUsername.getText().toString();
 
                                             SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
                                             String userDetailsName = preferences.getString("newUsername", "not exist");
 
 
-                                            if (user.equals(userDetailsName)) {
+                                            if (username.equals(userDetailsName)) {
 
 
                                                 Intent displayScreen = new Intent(LoginActivity.this, MainActivity.class);
@@ -57,12 +53,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                             }
-
-
                                         }
                                     }
-
-
         );
 
 
@@ -81,14 +73,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_activity, menu);
-        MenuItem logout = menu.findItem(R.id.idLogout);
-        logout.setVisible(true);
-        return true;
 
-
-    }
 }

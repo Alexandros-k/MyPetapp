@@ -62,7 +62,7 @@ public class BrowseActivity extends AppCompatActivity {
 
                 SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
-                String userDetailsName = preferences.getString("", "not exist");
+                String userDetailsName = preferences.getString("newUsername", "not exist");
                 if(userDetailsName==null) {
 
 

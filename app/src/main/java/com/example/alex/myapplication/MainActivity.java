@@ -76,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
         MenuItem logout = menu.findItem(R.id.idLogout);
         MenuItem login = menu.findItem(R.id.idLogin);
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
-
-
-        if(preferences!=null) {
-            login.setVisible(true);
-            logout.setVisible(true);
-
-        }else{
+        String userDetailsName = preferences.getString("newUsername", "not exist");
+        System.out.println(userDetailsName);
+        if(userDetailsName.length()!=0) {
             login.setVisible(true);
             logout.setVisible(false);
+
+        }else{
+            login.setVisible(false);
+            logout.setVisible(true);
 
         }
         return true;
@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.commit();
+                Intent LognScreen = new Intent(MainActivity.this,MainActivity.class);
+                startActivity(LognScreen);
                 return true;
 
 
