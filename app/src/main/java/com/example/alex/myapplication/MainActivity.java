@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             logout.setVisible(false);
 
         }else{
-            login.setVisible(false);
+            login.setVisible(true);
             logout.setVisible(true);
 
         }

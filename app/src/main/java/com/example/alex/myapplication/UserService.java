@@ -44,7 +44,7 @@ public class UserService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
-     * @param //name Used to name the worker thread, important only for debugging.
+     * //@param name Used to name the worker thread, important only for debugging.
      */
     public UserService() {
         super("User Service");
@@ -83,12 +83,12 @@ public class UserService extends IntentService {
             User user = new User();
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setUsername(username);
+            user.setUserName(username);
             user.setPassword(password);
 
             String userJson = new Gson().toJson(user);
 
-            Log.d(LOG_TAG, userJson);
+            Log.d(LOG_TAG , userJson);
 
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
             writer.write(userJson);
@@ -116,9 +116,16 @@ public class UserService extends IntentService {
 
     private void getUsers(Intent intent) {
         InputStream is = null;
+         final String EXTRA_TEST_USERNAME = "extra.test.username";
+         final String EXTRA_TEST_PASSWORD = "extra.test.password";
 
+        String firstName = intent.getStringExtra(EXTRA_FIRST_NAME);
+        String lastName = intent.getStringExtra(EXTRA_LAST_NAME);
+        String username = intent.getStringExtra(EXTRA_TEST_USERNAME);
+        String password = intent.getStringExtra(EXTRA_TEST_PASSWORD);
+        String newURL = GET_USERS_URL + username + "/" + password ;
         try {
-            URL url = new URL(GET_USERS_URL+URL_USERNAME+"/"+URL_PASSWORD);
+            URL url = new URL(newURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -137,6 +144,8 @@ public class UserService extends IntentService {
 
             Intent resultIntent = new Intent(ACTION_GET_USERS_RESULT);
             resultIntent.putExtra(EXTRA_USERS_RESULT, result);
+
+
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
 
