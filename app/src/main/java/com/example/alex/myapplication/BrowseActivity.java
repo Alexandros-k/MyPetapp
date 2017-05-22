@@ -3,7 +3,7 @@ package com.example.alex.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.example.alex.myapplication.R.id.PetDetailsId;
 
-public class BrowseActivity extends AppCompatActivity {
+public class BrowseActivity extends FragmentActivity {
 
     PetDbHelper myDb;
 

@@ -39,6 +39,7 @@
         <activity android:name=".LoginActivity">
         </activity>
 
+
         <service android:name=".UserService"
             android:enabled="true"
             android:exported="false" />

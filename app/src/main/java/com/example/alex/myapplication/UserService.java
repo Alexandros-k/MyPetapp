@@ -2,6 +2,7 @@ package com.example.alex.myapplication;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -14,6 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 /**
  * Created by Alex on 5/10/2017.
  */
@@ -39,8 +41,10 @@ public class UserService extends IntentService {
     private static final String GET_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/";
     private static final String CREATE_USERS_URL = "http://hodor.ait.gr:8080/myPets/api/user/";
 
-    private static final String URL_USERNAME = "username";
-    private static final String URL_PASSWORD = "password";
+    public static final String URL_USERNAME = "username";
+    public static final String URL_PASSWORD = "password";
+    public static final String EXTRA_MESSAGE_FROM_SERVER = "message";
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -116,8 +120,8 @@ public class UserService extends IntentService {
 
     private void getUsers(Intent intent) {
         InputStream is = null;
-         final String EXTRA_TEST_USERNAME = "extra.test.username";
-         final String EXTRA_TEST_PASSWORD = "extra.test.password";
+         final String EXTRA_TEST_USERNAME = "username";
+         final String EXTRA_TEST_PASSWORD = "password";
 
         String firstName = intent.getStringExtra(EXTRA_FIRST_NAME);
         String lastName = intent.getStringExtra(EXTRA_LAST_NAME);
@@ -140,15 +144,38 @@ public class UserService extends IntentService {
             is = conn.getInputStream();
 
             // Convert the InputStream into a bitmap
-            String result = convertStreamToString(is);
+
+           /* String result = convertStreamToString(is);
 
             Intent resultIntent = new Intent(ACTION_GET_USERS_RESULT);
             resultIntent.putExtra(EXTRA_USERS_RESULT, result);
 
+            LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);*/
 
 
-            LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+            String user = convertStreamToString(is);
 
+            User registeredUser = new Gson().fromJson(user, User.class);
+            if (username.equals(registeredUser.getUserName()) && password.equals(registeredUser.getPassword()) && (response >= 200 && response < 300)) {
+
+                Intent resultIntent = new Intent(ACTION_GET_USERS_RESULT);
+                resultIntent.putExtra(EXTRA_MESSAGE_FROM_SERVER, response);
+               // resultIntent.putExtra(RegisterActivity.KEY_FOR_STATUS, true);
+
+                resultIntent.putExtra(EXTRA_USERNAME, registeredUser.getUserName());
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+                SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+
+                String userDetailsName = preferences.getString("newUsername", "");
+
+            }else{
+                Intent resultIntent = new Intent(ACTION_GET_USERS_RESULT);
+                resultIntent.putExtra(EXTRA_MESSAGE_FROM_SERVER, response);
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+
+            }
             // Makes sure that the InputStream is closed after the app is
             // finished using it.
         } catch (Exception e) {

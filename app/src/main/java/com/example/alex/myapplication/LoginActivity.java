@@ -1,6 +1,5 @@
 package com.example.alex.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,8 +31,9 @@ public class LoginActivity extends AppCompatActivity {
                                         public void onClick(View v) {
 
                                             String username = loginUsername.getText().toString();
+                                            String password = loginPassword.getText().toString();
 
-                                            SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+                                          SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
 
                                             String userDetailsName = preferences.getString("newUsername", "not exist");
 
@@ -44,15 +44,20 @@ public class LoginActivity extends AppCompatActivity {
                                                 Intent displayScreen = new Intent(LoginActivity.this, MainActivity.class);
                                                 startActivity(displayScreen);
                                             } else {
-                                                Context context = getApplicationContext();
-                                                CharSequence text = "Please Register First";
-                                                int duration = Toast.LENGTH_SHORT;
 
-                                                Toast toast = Toast.makeText(context, text, duration);
+                                                Toast toast = Toast.makeText(LoginActivity.this, "Please Register First", Toast.LENGTH_SHORT);
                                                 toast.show();
-
-
                                             }
+
+
+                                                Intent intent = new Intent(LoginActivity.this, UserService.class);
+                                                intent.setAction(UserService.ACTION_GET_USERS);
+
+                                                intent.putExtra(UserService.URL_USERNAME, username);
+                                                intent.putExtra(UserService.URL_PASSWORD, password);
+
+                                                startService(intent);
+
                                         }
                                     }
         );

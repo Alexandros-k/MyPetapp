@@ -11,19 +11,33 @@
 
 
     <ListView
-        android:id="@+id/SpeciesView"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+    android:id="@+id/SpeciesView"
+    android:layout_width="368dp"
+    android:layout_height="495dp"
 
-        android:dividerHeight="30.0sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+    android:dividerHeight="30.0sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="1.0"
 
 
-       />
+    />
+    <fragment class="com.example.alex.myapplication.FragmentPetList"
+        android:id="@+id/frag_students_list"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp" />
 
+    <fragment class="com.example.alex.myapplication.FragmentPetDetails"
+        android:id="@+id/frag_students_details"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
