@@ -28,9 +28,31 @@ public class FragmentBrowseActivity extends Fragment {
     PetDbHelper myDb;
     int i;
 
-    public static final String EXTRA_NEW_PET_INTENT = "Species";
+    public static final String ARG_PET_POSITION_IN_LIST = "pet_position_in_list";
 
 
+    public static FragmentBrowseActivity newInstance(int petPositionInList) {
+        FragmentBrowseActivity fragment = new FragmentBrowseActivity();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PET_POSITION_IN_LIST, petPositionInList);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    private int petPositionInList;
+
+    public FragmentBrowseActivity() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            petPositionInList = getArguments().getInt(ARG_PET_POSITION_IN_LIST);
+        }
+    }
 
 
 
@@ -50,7 +72,7 @@ public class FragmentBrowseActivity extends Fragment {
         myDb = new PetDbHelper(getContext());
 
 
-        final String petIntent =getActivity(). getIntent().getStringExtra(EXTRA_NEW_PET_INTENT);
+        final String petIntent =getActivity(). getIntent().getStringExtra(ARG_PET_POSITION_IN_LIST);
 
         final List<Pet> pet = myDb.getPets();
 

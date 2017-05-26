@@ -26,11 +26,15 @@ public class FragmentMainActivity extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        void onPetSelected(String petIntent );
+        void onPetSelected(int petLocInList );
     }
 
-
-
+    public static FragmentMainActivity newInstance() {
+        return new FragmentMainActivity();
+    }
+    public FragmentMainActivity() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -66,7 +70,7 @@ public class FragmentMainActivity extends Fragment {
 
                // Intent intent = null;
                Intent intent =null;
-                if(intent!=null) {
+               // if(intent!=null) {
                     switch (position) {
                         case 0:
                             intent = new Intent(getActivity(), BrowseActivity.class);
@@ -87,72 +91,25 @@ public class FragmentMainActivity extends Fragment {
                     }
                     startActivity(intent);
 
-                    String petIntent = getActivity().getIntent().getExtras().getString("Species");
-                    System.out.println(intent);
-                    mListener.onPetSelected(petIntent);
 
-                }
+                    mListener.onPetSelected(position);
+
+            //    }
 
             }
         });
 
 
     }
-
-
-
-
-/*
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().setContentView(R.layout.fragment_pet_list);
-        mPetDbHelper = new PetDbHelper(getContext());
-        mPetDbHelper.initDb();
-        String[] species = {"Dogs", "Cats", "Other"};
-
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<String>(getContext(),R.layout.speciesview, species);
-
-        ListView list=(ListView)getActivity().findViewById(SpeciesView);
-        list.setAdapter(adapter);
-
-        ListView listView = (ListView)getActivity().findViewById(SpeciesView);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = null;
-                switch(position) {
-                    case 0:
-                        intent = new Intent(getContext(),BrowseActivity.class);
-                        intent.putExtra("Species", "Dog");
-                        break;
-                    case 1:
-                        intent = new Intent(getContext(), BrowseActivity.class);
-                        intent.putExtra("Species", "Cat");
-                        break;
-                    case 2:
-                        intent = new Intent(getContext(), BrowseActivity.class);
-                        intent.putExtra("Species", "Other");
-                        break;
-                }
-                startActivity(intent);
-
-
-
-
-            }
-        });
-
-
-
-
-
-
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
-*/
+
+
+
 
 
 

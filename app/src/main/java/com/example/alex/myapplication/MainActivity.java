@@ -32,24 +32,22 @@ public class MainActivity extends MenExtender implements FragmentMainActivity.On
 
 
     @Override
-    public void onPetSelected(String petIntent) {
+    public void onPetSelected(int petLocInList) {
         View fragmentContainer = findViewById(R.id.placeholder);
+
+
+
         boolean isDualPane = fragmentContainer != null && fragmentContainer.getVisibility() == View.VISIBLE;
 
         if (isDualPane) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            FragmentBrowseActivity fragment = new FragmentBrowseActivity();
-            Bundle args = new Bundle();
-            args.putString(FragmentBrowseActivity.EXTRA_NEW_PET_INTENT, petIntent);
 
-            fragment.setArguments(args);
-            fragmentTransaction.replace(R.id.placeholder, fragment);
+            fragmentTransaction.replace(R.id.placeholder, FragmentBrowseActivity.newInstance(petLocInList));
             fragmentTransaction.commit();
         }else {
-            Intent intent = new Intent(this, BrowseActivity.class);
-            intent.putExtra(BrowseActivity.EXTRA_PET_INTENT, petIntent);
 
-            startActivity(intent);
+
+            startActivity(BrowseActivity.getStartIntent(this,petLocInList));
         }
 
     }
