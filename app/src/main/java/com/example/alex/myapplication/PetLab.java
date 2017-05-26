@@ -13,7 +13,7 @@ import java.util.List;
 public class PetLab {
 
     private static PetLab sPetLab;
-    private List<Pet> mPets;
+    static public List<Pet> mPets;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
