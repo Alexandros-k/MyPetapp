@@ -31,30 +31,27 @@ public class FragmentBrowseActivity extends Fragment {
     public static final String ARG_PET_POSITION_IN_LIST = "pet_position_in_list";
 
 
-    public static FragmentBrowseActivity newInstance(int petPositionInList) {
+    public static FragmentBrowseActivity newInstance(String petPositionInList) {
         FragmentBrowseActivity fragment = new FragmentBrowseActivity();
         Bundle args = new Bundle();
-        args.putInt(ARG_PET_POSITION_IN_LIST, petPositionInList);
+        args.putString(ARG_PET_POSITION_IN_LIST, petPositionInList);
         fragment.setArguments(args);
         return fragment;
     }
 
-    private int petPositionInList;
+    private String petPositionInList;
 
     public FragmentBrowseActivity() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            petPositionInList = getArguments().getInt(ARG_PET_POSITION_IN_LIST);
+            petPositionInList = getArguments().getString(ARG_PET_POSITION_IN_LIST);
         }
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,20 +64,19 @@ public class FragmentBrowseActivity extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setContentView(R.layout.fragment_pet_list);
+      //  getActivity().setContentView(R.layout.fragment_pet_details);
 
-        myDb = new PetDbHelper(getContext());
+        myDb = new PetDbHelper(getActivity());
 
 
         final String petIntent =getActivity(). getIntent().getStringExtra(ARG_PET_POSITION_IN_LIST);
 
         final List<Pet> pet = myDb.getPets();
 
-
+       PetAdaptrer petAdaptrer = new PetAdaptrer(getActivity(), R.layout.fragment_pet_details);
         ListView listview = (ListView) getActivity().findViewById(fragPetDetailsId);
-        PetAdaptrer petAdaptrer = new PetAdaptrer(getContext(), R.layout.fragment_pet_details);
+
         listview.setAdapter(petAdaptrer);
-        listview.setVisibility(View.VISIBLE);
         for (i = 0; i < pet.size(); i++)
 
         {
@@ -128,23 +124,6 @@ public class FragmentBrowseActivity extends Fragment {
 
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

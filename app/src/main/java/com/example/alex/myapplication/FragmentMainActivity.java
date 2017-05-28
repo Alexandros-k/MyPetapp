@@ -26,7 +26,7 @@ public class FragmentMainActivity extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        void onPetSelected(int petLocInList );
+        void onPetSelected(String onPetLocationInList );
     }
 
     public static FragmentMainActivity newInstance() {
@@ -36,10 +36,16 @@ public class FragmentMainActivity extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mListener=(OnFragmentInteractionListener)context;
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -70,43 +76,38 @@ public class FragmentMainActivity extends Fragment {
 
                // Intent intent = null;
                Intent intent =null;
-               // if(intent!=null) {
+
                     switch (position) {
                         case 0:
-                            intent = new Intent(getActivity(), BrowseActivity.class);
-                            intent.putExtra("Species", "Dog");
-
+                            mListener.onPetSelected("Dogs");
                             break;
                         case 1:
-                            intent = new Intent(getActivity(), BrowseActivity.class);
-                            intent.putExtra("Species", "Cat");
-
+                            mListener.onPetSelected("Cats");
                             break;
                         case 2:
-                            intent = new Intent(getActivity(), BrowseActivity.class);
-                            intent.putExtra("Species", "Other");
-
+                            mListener.onPetSelected("Other");
                             break;
 
                     }
-                    startActivity(intent);
 
 
-                    mListener.onPetSelected(position);
 
-            //    }
 
-            }
+                }
+
+
         });
 
 
     }
+
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+
 
 
 
