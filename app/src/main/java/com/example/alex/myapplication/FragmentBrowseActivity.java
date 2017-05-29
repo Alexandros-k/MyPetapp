@@ -48,9 +48,9 @@ public class FragmentBrowseActivity extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+       if (getArguments() != null) {
             petPositionInList = getArguments().getString(ARG_PET_POSITION_IN_LIST);
-        }
+       }
     }
 
     @Override
