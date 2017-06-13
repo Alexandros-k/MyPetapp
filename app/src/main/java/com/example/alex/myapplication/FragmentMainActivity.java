@@ -79,16 +79,17 @@ public class FragmentMainActivity extends Fragment {
 
                     switch (position) {
                         case 0:
-                            mListener.onPetSelected("Dogs");
+                            mListener.onPetSelected("Dog");
                             break;
                         case 1:
-                            mListener.onPetSelected("Cats");
+                            mListener.onPetSelected("Cat");
                             break;
                         case 2:
                             mListener.onPetSelected("Other");
                             break;
 
                     }
+
 
 
 

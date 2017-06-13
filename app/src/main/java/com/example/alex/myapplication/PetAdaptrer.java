@@ -53,16 +53,17 @@ public class PetAdaptrer extends ArrayAdapter {
         View row;
         row = convertView;
         DataHandler handler;
-        if(convertView==null){
+       if(convertView==null){
             LayoutInflater inflater=(LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
            row= inflater.inflate(R.layout.activity_pet_details_row,parent,false);
-                 handler= new DataHandler();
-                 handler.petImage=(ImageView) row.findViewById(R.id.pet_pic_resource);
-                 handler.petName=(TextView) row.findViewById(R.id.pet_name_resource);
-                 handler.petBreed=(TextView) row.findViewById(R.id.pet_breed_resource);
-        }else{
+
+       }else{
             handler=(DataHandler) row.getTag();
         }
+        handler= new DataHandler();
+        handler.petImage=(ImageView) row.findViewById(R.id.pet_pic_resource);
+        handler.petName=(TextView) row.findViewById(R.id.pet_name_resource);
+        handler.petBreed=(TextView) row.findViewById(R.id.pet_breed_resource);
 
         PetDataProvider dataProvider;
         dataProvider=(PetDataProvider)this.getItem(position);
