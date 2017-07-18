@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alex.myapplication.PetDetailsActivity"
+    android:background="#000000">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/Pic"
+        android:layout_width="169dp"
+        android:layout_height="146dp"
+        app:srcCompat="@drawable/lab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linear2Id"
+        android:layout_width="183dp"
+        android:layout_height="179dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/Pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/idspecies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="species"
+            android:textColor="#ffffff" />
+
+
+        <TextView
+            android:id="@+id/IdName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gender"
+            android:textColor="#ffffff" />
+
+
+        <TextView
+            android:id="@+id/IdBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breed"
+            android:textColor="#ffffff" />
+
+
+        <TextView
+            android:id="@+id/idColour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="colour"
+            android:textColor="#ffffff" />
+
+
+        <TextView
+            android:id="@+id/idChipId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChipId"
+            android:textColor="#ffffff" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="230dp"
+        android:layout_height="335dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Pic"
+        app:layout_constraintVertical_bias="0.142">
+
+        <TextView
+            android:id="@+id/IdDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dateofbirth"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idDistinguishingMarks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="distmarks"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idOwnerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ownername"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idOwnerPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ownerphone"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idOwnerAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="owneraddress"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idVetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vetname"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idVetPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vetPhone"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idVetAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vetAdress"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/idComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="comments"
+            android:textColor="#ffffff"
+
+            />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

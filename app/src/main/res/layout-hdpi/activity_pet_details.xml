@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/placeholder"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    android:background="#000000"
+    tools:context="com.example.alex.myapplication.BrowseActivity"
+    android:name="com.example.alex.myapplication.BrowseActivity"
+    >
+
+</FrameLayout>

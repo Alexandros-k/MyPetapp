@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.alex.myapplication.FragmentMainActivity"
-
-    >
+    tools:context="com.example.alex.myapplication.FragmentBrowseActivity">
 
 
     <ListView
-        android:id="@+id/SpeciesView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:dividerHeight="30.0sp"
-         />
+        android:id="@+id/fragPetDetailsId"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical" />
+
 
 
 </LinearLayout>
